@@ -27,5 +27,4 @@
  */
 
  $GLOBALS['TL_HOOKS']['postLogin'][] = array('login_count', 'count_fe');
-
 ?>
