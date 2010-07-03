@@ -38,7 +38,7 @@ class login_count extends Frontend {
 		$this->import('Database');
 		$intActCount = $objUser->lu_login_count;
 		
-		//TODO: Ich wei√ü nicht obs n√∂tig ist oder ob PHP mittlerweile auch null ++$value rechnen kann ohne notice.
+		//TODO: Ich weiﬂ nicht obs nˆtig ist oder ob PHP mittlerweile auch null ++$value rechnen kann ohne notice.
 		if (empty($intActCount))
 			$intActCount = 0;
 
