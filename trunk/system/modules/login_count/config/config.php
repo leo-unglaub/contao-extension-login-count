@@ -1,8 +1,10 @@
 <?php if (!defined('TL_ROOT')) die('You can not access this file directly!');
 
 /**
- * TYPOlight Open Source CMS
+ * Contao Open Source CMS
  * Copyright (C) 2005-2010 Leo Feyer
+ *
+ * Formerly known as TYPOlight Open Source CMS.
  *
  * This program is free software: you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -26,5 +28,15 @@
  * @filesource
  */
 
- $GLOBALS['TL_HOOKS']['postLogin'][] = array('login_count', 'count_fe');
+/**
+ * Hooks
+ */
+$GLOBALS['TL_HOOKS']['postLogin'][] = array('login_count', 'count_fe');
+
+// Contao 2.9 contains the Hook getContentElement (http://dev.contao.org/issues/2065)
+if (version_compare('2.9.0', VERSION.'.'.BUILD, '<='))
+{
+	$GLOBALS['TL_HOOKS']['getContentElement'][] = array('login_count', 'check_counter_permissions');
+}
+
 ?>
