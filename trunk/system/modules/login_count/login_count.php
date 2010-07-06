@@ -58,7 +58,7 @@ class login_count extends Frontend {
 		// the article view parse the content elements, so we skip the check
 		if (TL_MODE == 'BE')
 		{
-			if($objElement->lc_from>0 || $objElement->lc_to > 0)
+			if($objElement->lc_from > 0 || $objElement->lc_to > 0)
 				return '<div class="cte_type">' . sprintf($GLOBALS['TL_LANG']['MSC']['login_count_be_info'], $objElement->lc_from, $objElement->lc_to) . '</div>' . $strBuffer;
 			else
 				return $strBuffer;
@@ -75,7 +75,7 @@ class login_count extends Frontend {
 			return $strBuffer;
 		}
 
-		return $this->User->lu_login_count;
+		return '';
 	}
 }
 
