@@ -33,6 +33,6 @@
  * Fields
  */
 $GLOBALS['TL_LANG']['tl_content']['lc_from']	= array('ab x Logins anzeigen', 'Geben Sie hier ein ab wie viel Logins dieses Content Element sichbar sein soll. Der Wert 0 deaktivert diese Funktion.');
-$GLOBALS['TL_LANG']['tl_content']['lc_to']	= array('bis x Logins anzeigen', 'Geben Sie hier ein bis wie viel Logins ein Content Element angezeigt werden soll. Der Wert 0 deaktiviert diese Funktion.')
+$GLOBALS['TL_LANG']['tl_content']['lc_to']		= array('bis x Logins anzeigen', 'Geben Sie hier ein bis wie viel Logins ein Content Element angezeigt werden soll. Der Wert 0 deaktiviert diese Funktion.')
 
 ?>

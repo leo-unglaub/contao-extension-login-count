@@ -28,15 +28,17 @@
  * @filesource
  */
 
+
 /**
  * Hooks
  */
-$GLOBALS['TL_HOOKS']['postLogin'][] = array('login_count', 'count_fe');
+$GLOBALS['TL_HOOKS']['postLogin'][] = array('LoginCount', 'incrementCounter');
+
 
 // Contao 2.9 contains the Hook getContentElement (http://dev.contao.org/issues/2065)
-if (version_compare('2.9.0', VERSION.'.'.BUILD, '<='))
+if (version_compare('2.9.0', VERSION . '.' . BUILD, '<='))
 {
-	$GLOBALS['TL_HOOKS']['getContentElement'][] = array('login_count', 'check_counter_permissions');
+	$GLOBALS['TL_HOOKS']['getContentElement'][] = array('LoginCount', 'checkCounterPermissions');
 }
 
 ?>

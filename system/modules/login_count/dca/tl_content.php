@@ -28,13 +28,16 @@
  * @filesource
  */
 
+
 /**
  * Contao 2.9 contains the Hook getContentElement (http://dev.contao.org/issues/2065)
  * so we add some fields to the DCA to select from how much logins a content element sould be shown
  */
-if (version_compare('2.9.0', VERSION.'.'.BUILD, '<='))
+if (version_compare('2.9.0', VERSION . '.' . BUILD, '<='))
 {
-	// add the fields to every palette
+	/**
+	 * Palettes
+	 */
 	foreach ($GLOBALS['TL_DCA']['tl_content']['palettes'] as $key=>$value)
 	{
 		// don't add to the __selector__
@@ -43,7 +46,11 @@ if (version_compare('2.9.0', VERSION.'.'.BUILD, '<='))
 			$GLOBALS['TL_DCA']['tl_content']['palettes'][$key] = str_replace(',guests', ',lc_from,lc_to,guests', $GLOBALS['TL_DCA']['tl_content']['palettes'][$key]);
 		}
 	}
-	
+
+
+	/**
+	 * Fields
+	 */
 	$GLOBALS['TL_DCA']['tl_content']['fields']['lc_from'] = array
 	(
 		'label'				=> &$GLOBALS['TL_LANG']['tl_content']['lc_from'],
@@ -52,7 +59,7 @@ if (version_compare('2.9.0', VERSION.'.'.BUILD, '<='))
 		'inputType'			=> 'text',
 		'eval'				=> array('rgxp'=>'digit', 'tl_class' => 'w50')
 	);
-	
+
 	$GLOBALS['TL_DCA']['tl_content']['fields']['lc_to'] = array
 	(
 		'label'				=> &$GLOBALS['TL_LANG']['tl_content']['lc_to'],
@@ -61,9 +68,9 @@ if (version_compare('2.9.0', VERSION.'.'.BUILD, '<='))
 		'inputType'			=> 'text',
 		'eval'				=> array('rgxp'=>'digit', 'tl_class'=>'w50')
 	);
-	
+
 	// fix a display problem
-	$GLOBALS['TL_DCA']['tl_content']['fields']['guests']['eval']['tl_class'] = 'clr';
+	$GLOBALS['TL_DCA']['tl_content']['fields']['guests']['eval']['tl_class'] .= ' clr';
 }
 
 ?>

@@ -32,6 +32,6 @@
 /**
  * Fields
  */
-$GLOBALS['TL_LANG']['tl_member']['lu_login_count'] = array('Anzahl der Logins', 'Misst die Anzahl der Logins eines Frontend Benutzers');
+$GLOBALS['TL_LANG']['tl_member']['lu_login_count'] = array('Anzahl der Logins', 'Zählt die Anzahl der Logins eines Frontend Benutzers');
 
 ?>

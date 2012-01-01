@@ -29,10 +29,13 @@
  */
 
 
-// add to the DCA to allow a backend user viewing the login count in the info menue
+/**
+ * Fields (add the login count to the info view so you can see it in the backend)
+ */
 $GLOBALS['TL_DCA']['tl_member']['fields']['lu_login_count'] = array
 (
 	'label'		=> &$GLOBALS['TL_LANG']['tl_member']['lu_login_count'],
 	'exclude'	=> true
 );
+
 ?>
