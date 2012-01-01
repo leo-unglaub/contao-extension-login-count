@@ -21,7 +21,7 @@
  * Software Foundation website at <http://www.gnu.org/licenses/>.
  *
  * PHP version 5
- * @copyright  LU-Hosting 2010
+ * @copyright  Leo Unglaub 2012
  * @author     Leo Unglaub <leo@leo-unglaub.net>
  * @package    login_count
  * @license    LGPL
@@ -38,7 +38,7 @@ class login_count extends Frontend {
 		$this->import('Database');
 		$intActCount = $objUser->lu_login_count;
 		
-		//TODO: Ich weiß nicht obs nötig ist oder ob PHP mittlerweile auch null ++$value rechnen kann ohne notice.
+		//TODO: Ich weiï¿½ nicht obs nï¿½tig ist oder ob PHP mittlerweile auch null ++$value rechnen kann ohne notice.
 		if (empty($intActCount))
 			$intActCount = 0;
 

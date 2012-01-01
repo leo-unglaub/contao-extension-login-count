@@ -21,7 +21,7 @@
  * Software Foundation website at <http://www.gnu.org/licenses/>.
  *
  * PHP version 5
- * @copyright  LU-Hosting 2010
+ * @copyright  Leo Unglaub 2012
  * @author     Leo Unglaub <leo@leo-unglaub.net>
  * @package    login_count
  * @license    LGPL
