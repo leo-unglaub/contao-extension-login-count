@@ -28,49 +28,71 @@
  * @filesource
  */
 
-class login_count extends Frontend {
-	
+
+/**
+ * Class LoginCount
+ * Provide methods to count the frontend logins
+ */
+class LoginCount extends Frontend
+{
 	/**
-	 * count the logins from a frontend user
+	 * Count the logins from a frontend user
+	 * 
+	 * @param User $objUser
+	 * @return void
 	 */
-	public function count_fe($objUser)
+	public function incrementCounter($objUser)
 	{
 		$this->import('Database');
-		$intActCount = $objUser->lu_login_count;
-		
-		//TODO: Ich wei� nicht obs n�tig ist oder ob PHP mittlerweile auch null ++$value rechnen kann ohne notice.
-		if (empty($intActCount))
-			$intActCount = 0;
 
-		$objUpdateCount = $this->Database->prepare('UPDATE tl_member SET lu_login_count=lu_login_count+1 WHERE id=?')
-										 ->execute($objUser->id);								
+		// only perform if the database field already exists, otherwize we have an error message during the database update
+		if ($this->Database->fieldExists('lu_login_count', 'tl_content') && TL_MODE == 'FE')
+		{
+			// increment the counter using an sql command
+			$objUpdateCount = $this->Database->prepare('UPDATE tl_member SET lu_login_count=lu_login_count+1 WHERE id=?')
+											 ->execute($objUser->id);
+		}
 	}
-	
+
+
 	/**
-	 * check the permissions of each content element and show them or not
+	 * Check the permissions of each content element and show them or not
+	 * 
+	 * @param object $objElement
+	 * @param string $strBuffer
+	 * @return string
 	 */
-	public function check_counter_permissions($objElement, $strBuffer)
+	public function checkCounterPermissions($objElement, $strBuffer)
 	{
-		// if no FE user is logged in, we dont need to check and can solve ressources
+		// if no FE user is logged in, we can skip the complete test
 		if (!FE_USER_LOGGED_IN && $objElement->lc_from > 0)
+		{
 			return '';
+		}
 
 		// the article view parse the content elements, so we skip the check
 		if (TL_MODE == 'BE')
 		{
 			if($objElement->lc_from > 0 || $objElement->lc_to > 0)
+			{
 				return '<div class="cte_type">' . sprintf($GLOBALS['TL_LANG']['MSC']['login_count_be_info'], $objElement->lc_from, $objElement->lc_to) . '</div>' . $strBuffer;
+			}
 			else
+			{
 				return $strBuffer;
+			}
 		}
-		
+
 		$this->Import('FrontendUser', 'User');
-		
+
 		// see KV Diagram :) Big thanks to xtra
 		// typecast to get a zero for non logged in users
-		if (((int)$this->User->lu_login_count >= $objElement->lc_from && $this->User->lu_login_count <= $objElement->lc_to)
-		|| ($objElement->lc_from == 0 && $objElement->lc_to == 0)
-		|| ($intLogins >= $objElement->lc_from && $objElement->lc_to == 0))
+		if
+		(
+			((int) $this->User->lu_login_count >= $objElement->lc_from && $this->User->lu_login_count <= $objElement->lc_to)
+			|| ($objElement->lc_from == 0 && $objElement->lc_to == 0)
+			|| ($intLogins >= $objElement->lc_from && $objElement->lc_to == 0)
+		)
 		{
 			return $strBuffer;
 		}
