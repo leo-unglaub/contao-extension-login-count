@@ -37,27 +37,26 @@ class LoginCount extends Frontend
 {
 	/**
 	 * Count the logins from a frontend user
-	 * 
+	 *
 	 * @param User $objUser
 	 * @return void
 	 */
 	public function incrementCounter($objUser)
 	{
-		$this->import('Database');
-
-		// only perform if the database field already exists, otherwize we have an error message during the database update
-		if ($this->Database->fieldExists('lu_login_count', 'tl_content') && TL_MODE == 'FE')
+		// check if the field already exists, otherwize we have an error
+		// in the install tool
+		if ($this->Database->fieldExists('lu_login_count', 'tl_member') && TL_MODE == 'FE')
 		{
-			// increment the counter using an sql command
-			$objUpdateCount = $this->Database->prepare('UPDATE tl_member SET lu_login_count=lu_login_count+1 WHERE id=?')
-											 ->execute($objUser->id);
+			// increment the counter
+			$objUser->lu_login_count = ++$objUser->lu_login_count;
+			$objUser->save();
 		}
 	}
 
 
 	/**
 	 * Check the permissions of each content element and show them or not
-	 * 
+	 *
 	 * @param object $objElement
 	 * @param string $strBuffer
 	 * @return string
